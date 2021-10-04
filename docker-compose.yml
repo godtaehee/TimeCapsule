@@ -39,4 +39,6 @@ services:
     volumes:
       - ./database/mysql/mysql_data:/var/lib/mysql
       - ./database/mysql/sqls/:/docker-entrypoint-initdb.d/
-
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: timecapsule
