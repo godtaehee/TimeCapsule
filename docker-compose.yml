@@ -16,3 +16,11 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "3000:80"
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /usr/src/app/node_modules
+      - /usr/src/app/dist
