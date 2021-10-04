@@ -28,6 +28,7 @@ services:
     volumes:
       - /usr/src/app/node_modules
       - /usr/src/app/dist
+      - ./server:/usr/src/app
 
   mysql:
     build:
