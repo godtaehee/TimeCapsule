@@ -30,6 +30,16 @@ services:
       - /usr/src/app/dist
       - ./server:/usr/src/app
 
+  server_test:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /usr/src/app/node_modules
+      - /usr/src/app/dist
+      - ./server:/usr/src/app
+    command: ["npm", "run", "test"]
+
   mysql:
     build:
       context: database/mysql
