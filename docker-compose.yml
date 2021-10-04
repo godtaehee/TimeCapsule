@@ -28,3 +28,15 @@ services:
     volumes:
       - /usr/src/app/node_modules
       - /usr/src/app/dist
+
+  mysql:
+    build:
+      context: database/mysql
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/mysql/mysql_data:/var/lib/mysql
+      - ./database/mysql/sqls/:/docker-entrypoint-initdb.d/
+
