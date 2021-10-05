@@ -9,4 +9,7 @@ export class UsersService {
   constructor(
     @InjectRepository(Users) private usersRepository: Repository<Users>,
   ) {}
+  async signUp(signUpUserInfo: any) {
+    return this.usersRepository.save(signUpUserInfo);
+  }
 }
