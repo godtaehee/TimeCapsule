@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
-import * as faker from 'faker';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Users } from './users.entity';
 class MockUsersRepository {
