@@ -1,4 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Users } from '../users/users.entity';
 
 @Entity()
 export class Capsules extends BaseEntity {
@@ -8,6 +15,6 @@ export class Capsules extends BaseEntity {
   @Column()
   description: string;
 
-  @Column()
-  userId: number;
+  @ManyToOne((type) => Users, (user) => user.capsules, { eager: false })
+  user: Users;
 }
