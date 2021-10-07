@@ -26,6 +26,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/typeorm": "^8.0.2",
     "@types/faker": "^5.5.8",
+    "class-validator": "^0.13.1",
     "faker": "^5.5.3",
     "mysql2": "^2.3.0",
     "reflect-metadata": "^0.1.13",
