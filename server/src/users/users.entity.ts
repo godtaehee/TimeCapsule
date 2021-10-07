@@ -23,6 +23,6 @@ export class Users extends BaseEntity {
   @Column()
   password: string;
 
-  @OneToMany((type) => Capsules, (capsule) => capsule.userId, { eager: true })
+  @OneToMany((type) => Capsules, (capsule) => capsule.user, { eager: true })
   capsules: Capsules[];
 }
