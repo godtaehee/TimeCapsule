@@ -2,9 +2,11 @@ import {
   BaseEntity,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
+import { Capsules } from '../capsules/capsules.entity';
 
 @Entity()
 @Unique(['email'])
@@ -20,4 +22,7 @@ export class Users extends BaseEntity {
 
   @Column()
   password: string;
+
+  @OneToMany((type) => Capsules, (capsule) => capsule.userId, { eager: true })
+  capsules: Capsules[];
 }
