@@ -8,7 +8,12 @@ import { CapsulesModule } from './capsules/capsules.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeORMConfig), UsersModule, CapsulesModule, AuthModule],
+  imports: [
+    TypeOrmModule.forRoot(typeORMConfig),
+    UsersModule,
+    CapsulesModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
