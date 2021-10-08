@@ -1,12 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { getRepositoryToken } from '@nestjs/typeorm';
-import { Users } from '../users/users.entity';
 import { SignUpDto } from '../users/dto/sign.up.dto';
+import { UsersRepository } from '../users/users.repository';
 
-class MockUsersRepository {}
-
+const mockRepository = {
+  save: jest.fn(),
+  findOne: jest.fn(),
+};
 describe('AuthController', () => {
   let authController: AuthController;
   let authService: AuthService;
@@ -17,8 +18,8 @@ describe('AuthController', () => {
       providers: [
         AuthService,
         {
-          provide: getRepositoryToken(Users),
-          useClass: MockUsersRepository,
+          provide: UsersRepository,
+          useValue: mockRepository,
         },
       ],
     }).compile();
