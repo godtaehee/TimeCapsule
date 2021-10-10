@@ -2,10 +2,11 @@ import { EntityRepository, Repository } from 'typeorm';
 import { Users } from './users.entity';
 import { SignUpDto } from './dto/sign.up.dto';
 import * as bcrypt from 'bcryptjs';
+import { SignInDto } from './dto/sign.in.dto';
 
 @EntityRepository(Users)
 export class UsersRepository extends Repository<Users> {
-  async SignUp(signUpUserInfo: SignUpDto) {
+  async signUp(signUpUserInfo: SignUpDto) {
     const { email, nickname, password } = signUpUserInfo;
 
     const salt = await bcrypt.genSalt();
