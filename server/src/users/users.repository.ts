@@ -22,4 +22,6 @@ export class UsersRepository extends Repository<Users> {
       console.error(err);
     }
   }
+
+  signIn(signInUserInfo: SignInDto) {}
 }
