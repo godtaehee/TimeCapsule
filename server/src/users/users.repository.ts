@@ -15,5 +15,7 @@ export class UsersRepository extends Repository<Users> {
     }
   }
 
-  signIn(signInUserInfo: SignInDto) {}
+  async signIn(email: string): Promise<Users> {
+    return this.findOne({ email });
+  }
 }
