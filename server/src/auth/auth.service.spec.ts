@@ -49,4 +49,22 @@ describe('AuthService', () => {
       expect(hashedPassword).toBeTruthy();
     });
   });
+
+  describe('Sign-In', () => {
+    const bcrypt = {
+      compare: jest.fn().mockResolvedValueOnce(true),
+    };
+    it('should be true if user exist and correct with Dto password and hashed password', () => {
+      const passwordInSignInDto = { password: faker.internet.password() };
+      const foundUserInfo = {
+        username: faker.internet.userName(),
+        password: faker.internet.password(),
+      };
+
+      expect(
+        foundUserInfo &&
+          bcrypt.compare(passwordInSignInDto.password, foundUserInfo.password),
+      ).toBeTruthy();
+    });
+  });
 });
