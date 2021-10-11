@@ -44,6 +44,19 @@ describe('AuthController', () => {
       const result = await authController.signUp(signUpUserInfo);
       expect(result).toBe(signUpResultInfo);
     });
+
+    it('should be called with SignUpDto', async () => {
+      const signUpDto: SignUpDto = {
+        email: faker.internet.email(),
+        nickname: faker.internet.userName(),
+        password: faker.random.alpha(),
+      };
+
+      authService.signUp = jest.fn();
+      const authControllerSpy = jest.spyOn(authController, 'signUp');
+      await authController.signUp(signUpDto as any);
+      expect(authControllerSpy).toBeCalledWith(signUpDto);
+    });
   });
 
   describe('Sign-in in UserController', () => {
