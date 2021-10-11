@@ -6,6 +6,7 @@ node_modules
 
 # Configuration
 ormconfig.json
+.env
 
 # Logs
 logs
@@ -62,4 +63,3 @@ coverage
 */package-lock.json
 mysql_data
 
-###
