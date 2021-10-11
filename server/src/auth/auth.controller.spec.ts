@@ -4,6 +4,8 @@ import { AuthService } from './auth.service';
 import { SignUpDto } from '../users/dto/sign.up.dto';
 import { UsersRepository } from '../users/users.repository';
 import * as faker from 'faker';
+import { Sign } from 'crypto';
+import { SignInDto } from '../users/dto/sign.in.dto';
 
 const mockRepository = {
   save: jest.fn(),
@@ -54,6 +56,18 @@ describe('AuthController', () => {
       authService.signIn = jest.fn().mockResolvedValueOnce(successSignUp);
       const result = await authController.signIn(signInInfo as any);
       expect(result).toBe(successSignUp);
+    });
+
+    it('should be called with SignInDto', async () => {
+      const signInDto: SignInDto = {
+        email: faker.internet.email(),
+        password: faker.random.alpha(),
+      };
+
+      authService.signIn = jest.fn();
+      const authControllerSpy = jest.spyOn(authController, 'signIn');
+      await authController.signIn(signInDto as any);
+      expect(authControllerSpy).toBeCalledWith(signInDto);
     });
   });
 });
