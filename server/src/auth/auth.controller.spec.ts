@@ -6,11 +6,14 @@ import { UsersRepository } from '../users/users.repository';
 import * as faker from 'faker';
 import { Sign } from 'crypto';
 import { SignInDto } from '../users/dto/sign.in.dto';
+import { JwtService } from '@nestjs/jwt';
 
 const mockRepository = {
   save: jest.fn(),
   findOne: jest.fn(),
 };
+
+const mockJwtService = {};
 describe('AuthController', () => {
   let authController: AuthController;
   let authService: AuthService;
@@ -23,6 +26,10 @@ describe('AuthController', () => {
         {
           provide: UsersRepository,
           useValue: mockRepository,
+        },
+        {
+          provide: JwtService,
+          useValue: mockJwtService,
         },
       ],
     }).compile();
