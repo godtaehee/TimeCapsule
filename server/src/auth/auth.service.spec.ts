@@ -2,10 +2,13 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersRepository } from '../users/users.repository';
 import * as faker from 'faker';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 const mockRepository = {
   save: jest.fn(),
   findOne: jest.fn(),
 };
+const mockJwtService = {};
+
 describe('AuthService', () => {
   let service: AuthService;
   let repository: UsersRepository;
@@ -16,6 +19,10 @@ describe('AuthService', () => {
         {
           provide: UsersRepository,
           useValue: mockRepository,
+        },
+        {
+          provide: JwtService,
+          useValue: mockJwtService,
         },
       ],
     }).compile();
