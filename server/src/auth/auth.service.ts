@@ -5,10 +5,12 @@ import { SignUpDto } from '../users/dto/sign.up.dto';
 import { SignInDto } from '../users/dto/sign.in.dto';
 import * as bcrypt from 'bcryptjs';
 import { Users } from '../users/users.entity';
+import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(UsersRepository) private usersRepository: UsersRepository,
+    private jwtService: JwtService,
   ) {}
   async signUp(signUpUserInfo: SignUpDto) {
     const { password } = signUpUserInfo;
@@ -21,8 +23,10 @@ export class AuthService {
     const { email, password } = signInUserInfo;
     const user: Users = await this.usersRepository.signIn(email);
 
-    if (user && (await bcrypt.compare(password, user.password)))
-      return 'login-success';
-    else throw new UnauthorizedException('logIn failed');
+    if (user && (await bcrypt.compare(password, user.password))) {
+      const payload = { email };
+      const accessToken = this.jwtService.sign(payload);
+      return { accessToken };
+    } else throw new UnauthorizedException('logIn failed');
   }
 }
