@@ -8,9 +8,11 @@ import { CapsulesModule } from './capsules/capsules.module';
 import { AuthModule } from './auth/auth.module';
 import { MorganInterceptor, MorganModule } from 'nest-morgan';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot(typeORMConfig),
     UsersModule,
     CapsulesModule,
